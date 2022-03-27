@@ -1,0 +1,81 @@
+'****************************************************************
+'*  Name    : Enginkaratas.BAS                                  *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2021 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 4.04.2021                                         *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+DEFINE LCD_DREG    PORTB
+DEFINE LCD_DBIT    4
+DEFINE LCD_EREG PORTB
+DEFINE LCD_EBIT 3
+DEFINE LCD_RWREG    PORTB
+DEFINE LCD_RWBIT 2
+DEFINE LCD_RSREG PORTB
+DEFINE LCD_RSBIT 1
+DEFINE LCD_BITS 4
+DEFINE LCD_LINES 2
+
+
+SAYI VAR BYTE
+SAYI = 0
+
+TRISA = 1
+TRISB = 0
+
+
+    LCDOUT "NO: 16008118040"
+    LCDOUT " ENGIN KARATAS"
+    LCDOUT " HOSGELDIN   "      
+   
+ 
+    LCDOUT "Sayici PROGRAM ->"
+    PAUSE 500
+    LCDOUT $FE,1
+    
+    
+    
+BASLA:
+    LCDOUT $FE,2, "   SAYI = ",DEC4 SAYI   
+     
+    IF PORTA.0 = 0 THEN
+        SAYI = SAYI + 1
+    ENDIF
+    IF PORTA.1 = 0 THEN
+        SAYI = SAYI - 1
+           
+    ENDIF
+    GOTO BASLA
+END  
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+TRISA=%00000001
+TRISB=0
+TRISC=0
+TRISD=0
+ 
+DEFINE LCD_DREG PORTB  
+DEFINE LCD_DBIT 4 
+DEFINE LCD_EREG PORTB  
+DEFINE LCD_EBIT 3  
+DEFINE LCD RWREG PORTB 
+DEFINE LCD_RWBIT 2 
+DEFINE LCD_RSREG PORTB 
+DEFINE LCD_RSBIT 1 
+DEFINE LCD_BITS 4 
+DEFINE LCD_LINES 2  
+DEFINE ADC_BITS 10 
+DEFINE ADC_CLOCK 3 
+DEFINE ADC_SAMPLEUS 100 
+
+ADCON1=%10001110 
+HAM var word  
+VOLT var word 
+Mvolt var byte
+LOW PORTB.2  
+LCDOUT $FE,1  
+pause 200  
+BASLA:
+ 
+ADCIN 0,HAM  
+ 
+BAK: IF ADCON0.2=1 THEN BAK 
+    HAM = HAM/20 
+    lcdout $FE, 1, " HAM =", # HAM
+    Ham=ham+1
+    Volt=(ham */ 1250)/100
+    Mvolt=Volt // 10
+    Volt=Volt/10
+    LCDOUT $FE,$C0," VOLT=",#VOLT,",",# Mvolt
+    PAUSE 500
+    IF HAM >= 25 THEN 
+    PORTA.1 = 1
+    PORTA.2 = 0
+    ENDIF
+    
+    IF HAM < 25 THEN 
+    PORTA.2 = 1
+    PORTA.1 = 0
+    ENDIF
+    
+GOTO BASLA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

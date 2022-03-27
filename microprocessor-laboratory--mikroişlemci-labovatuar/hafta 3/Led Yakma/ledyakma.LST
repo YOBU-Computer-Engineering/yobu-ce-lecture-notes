@@ -1,0 +1,1421 @@
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002 ; PICBASIC PRO(TM) Compiler 2.60, (c) 1998, 2009 microEngineering Labs, Inc. All Rights Reserved. 
+  00000001            00003 _USED                   EQU     1
+                      00004 
+                      00005         INCLUDE "C:\PBP\16F628.INC"
+                      00001 ;****************************************************************
+                      00002 ;*  16F628.INC                                                  *
+                      00003 ;*                                                              *
+                      00004 ;*  By        : Leonard Zerman, Jeff Schmoyer                   *
+                      00005 ;*  Notice    : Copyright (c) 2002 microEngineering Labs, Inc.  *
+                      00006 ;*              All Rights Reserved                             *
+                      00007 ;*  Date      : 09/27/02                                        *
+                      00008 ;*  Version   : 2.43                                            *
+                      00009 ;*  Notes     :                                                 *
+                      00010 ;****************************************************************
+                      00019         LIST
+                      00020         LIST p = 16F628, r = dec, w = -302
+                      00021         INCLUDE "P16F628.INC"   ; MPASM  Header
+                      00001         LIST
+                      00002 ; P16F628.INC  Standard Header File, Version 1.01    Microchip Technology, Inc.
+                      00261         LIST
+2007   3F65           00022         __config _XT_OSC & _WDT_ON & _PWRTE_ON & _MCLRE_ON & _LVP_OFF & _CP_OFF
+                      00025         LIST
+                      00006 
+  00000020            00007 RAM_START                       EQU     00020h
+  0000014F            00008 RAM_END                         EQU     0014Fh
+  00000003            00009 RAM_BANKS                       EQU     00003h
+  00000020            00010 BANK0_START                     EQU     00020h
+  0000007F            00011 BANK0_END                       EQU     0007Fh
+  000000A0            00012 BANK1_START                     EQU     000A0h
+  000000EF            00013 BANK1_END                       EQU     000EFh
+  00000120            00014 BANK2_START                     EQU     00120h
+  0000014F            00015 BANK2_END                       EQU     0014Fh
+  00002100            00016 EEPROM_START                    EQU     02100h
+  0000217F            00017 EEPROM_END                      EQU     0217Fh
+                      00018 
+                      00019 ; C:\PBP\PBPPIC14.RAM           00012   A00020  R0      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  00000020            00020 R0                              EQU     RAM_START + 000h
+                      00021 ; C:\PBP\PBPPIC14.RAM           00013   A00022  R1      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  00000022            00022 R1                              EQU     RAM_START + 002h
+                      00023 ; C:\PBP\PBPPIC14.RAM           00014   A00024  R2      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  00000024            00024 R2                              EQU     RAM_START + 004h
+                      00025 ; C:\PBP\PBPPIC14.RAM           00015   A00026  R3      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  00000026            00026 R3                              EQU     RAM_START + 006h
+                      00027 ; C:\PBP\PBPPIC14.RAM           00016   A00028  R4      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  00000028            00028 R4                              EQU     RAM_START + 008h
+                      00029 ; C:\PBP\PBPPIC14.RAM           00017   A0002A  R5      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000002A            00030 R5                              EQU     RAM_START + 00Ah
+                      00031 ; C:\PBP\PBPPIC14.RAM           00018   A0002C  R6      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  0000002C            00032 R6                              EQU     RAM_START + 00Ch
+                      00033 ; C:\PBP\PBPPIC14.RAM           00019   A0002E  R7      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  0000002E            00034 R7                              EQU     RAM_START + 00Eh
+                      00035 ; C:\PBP\PBPPIC14.RAM           00020   A00030  R8      VAR     WORD BANK0 SYSTEM       ' System Registe
+                            r
+  00000030            00036 R8                              EQU     RAM_START + 010h
+                      00037 ; C:\PBP\PBPPIC14.RAM           00026   A00032  FLAGS   VAR     BYTE BANK0 SYSTEM       ' Static flags
+  00000032            00038 FLAGS                           EQU     RAM_START + 012h
+                      00039 ; C:\PBP\PBPPIC14.RAM           00025   A00033  GOP     VAR     BYTE BANK0 SYSTEM       ' Gen Op Paramet
+                            er
+  00000033            00040 GOP                             EQU     RAM_START + 013h
+                      00041 ; C:\PBP\PBPPIC14.RAM           00022   A00034  RM1     VAR     BYTE BANK0 SYSTEM       ' Pin 1 Mask
+  00000034            00042 RM1                             EQU     RAM_START + 014h
+                      00043 ; C:\PBP\PBPPIC14.RAM           00024   A00035  RM2     VAR     BYTE BANK0 SYSTEM       ' Pin 2 Mask
+  00000035            00044 RM2                             EQU     RAM_START + 015h
+                      00045 ; C:\PBP\PBPPIC14.RAM           00021   A00036  RR1     VAR     BYTE BANK0 SYSTEM       ' Pin 1 Register
+  00000036            00046 RR1                             EQU     RAM_START + 016h
+                      00047 ; C:\PBP\PBPPIC14.RAM           00023   A00037  RR2     VAR     BYTE BANK0 SYSTEM       ' Pin 2 Register
+  00000037            00048 RR2                             EQU     RAM_START + 017h
+                      00049 ; C:\PBP\16F628.BAS             00020   PORTL   VAR     PORTB
+  00000006            00050 _PORTL                          EQU      PORTB
+                      00051 ; C:\PBP\16F628.BAS             00021   PORTH   VAR     PORTA
+  00000005            00052 _PORTH                          EQU      PORTA
+                      00053 ; C:\PBP\16F628.BAS             00022   TRISL   VAR     TRISB
+  00000086            00054 _TRISL                          EQU      TRISB
+                      00055 ; C:\PBP\16F628.BAS             00023   TRISH   VAR     TRISA
+  00000085            00056 _TRISH                          EQU      TRISA
+                      00057 #define _PORTA??0                PORTA, 000h
+                      00058         INCLUDE "LEDYAKMA.MAC"
+                      00001 
+                      00039         LIST
+                      00059         INCLUDE "C:\PBP\PBPPIC14.LIB"
+                      00001 ;******************************************************************
+                      00002 ;*  PBPPIC14.LIB                                                  *
+                      00003 ;*                                                                *
+                      00004 ;*  By        : Leonard Zerman, Jeff Schmoyer                     *
+                      00005 ;*  Notice    : Copyright (c) 2009 microEngineering Labs, Inc.    *
+                      00006 ;*              All Rights Reserved                               *
+                      00007 ;*  Date      : 07/08/09                                          *
+                      00008 ;*  Version   : 2.60                                              *
+                      00009 ;*  Notes     :                                                   *
+                      00010 ;******************************************************************
+                      00054   LIST
+                      00055 ; Oscillator is 4MHz
+                      01133   LIST
+0000                  01134     ORG RESET_ORG               ; Reset vector usually at 0
+                      01149   LIST
+0000   2828           01150         goto    INIT            ; Finish initialization
+                      06329   LIST
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0001   01A3           06330 PAUSE   clrf    R1 + 1
+0002   00A2           06331 PAUSEL  movwf   R1
+0003   30FF           06332 pauseloop movlw -1              ; 1 (9)
+0004   07A2           06333         addwf   R1, F           ; 1
+0005   1C03           06334         btfss   STATUS, C       ; 1 / 2
+0006   07A3           06335         addwf   R1 + 1, F       ; 1 / 0
+0007   1C03           06336         btfss   STATUS, C       ; 2
+0008   2823           06337         goto    DONE
+0009   3003           06338         movlw   (PAUSE_DELAY) >> 8      ; 1
+000A   00A1           06339         movwf   R0 + 1          ; 1
+000B   30DF           06340         movlw   low (PAUSE_DELAY)       ; 1
+000C   200F           06341         call    PAUSEUSL        ; -2 (PAUSEUSL gives you 2 less than you ask for)
+000D   2803           06342         goto    pauseloop       ; 2
+                      06386   LIST
+000E   01A1           06387 PAUSEUS clrf    R0 + 1          ; 1
+000F   3EE8           06388 PAUSEUSL addlw  -24             ; 1 Subtract overhead
+0010   00A0           06389         movwf   R0              ; 1
+0011   09A1           06390         comf    R0 + 1, F       ; 1
+0012   30FC           06391         movlw   -4              ; 1
+0013   1C03           06392         btfss   STATUS, C       ; 1 / 2
+0014   2818           06393         goto    pauseush        ; 2 / 0
+0015   07A0           06394 pauseusloop addwf R0, F         ; 1
+0016   1803           06395         btfsc   STATUS, C       ; 1 / 2
+0017   2815           06396         goto    pauseusloop     ; 2 / 0
+0018   07A0           06397 pauseush addwf  R0, F           ; 1 Do an extra countdown
+                      06398         CLRWDT?NOP              ; 1 Keep Watchdog clear
+                          M     ifndef NO_CLRWDT
+0019   0064               M         clrwdt
+                          M     else
+                          M         nop
+                          M     endif
+001A   0FA1           06399         incfsz  R0 + 1, F       ; 1 / 2
+001B   2815           06400         goto    pauseusloop     ; 2 / 0
+001C   1820           06401         btfsc   R0, 0           ; 1 / 2
+001D   281E           06402         goto    $ + 1           ; 2 / 0 Burn an extra cycle
+001E   1CA0           06403         btfss   R0, 1           ; 1 / 2
+001F   2822           06404         goto    pauseusdone     ; 2 / 0
+0020   0000           06405         nop                     ; 1
+0021   2822           06406         goto    $ + 1           ; 2 Burn an extra 2 cycles
+0022   0008           06407 pauseusdone return              ; 2 + 3 (call + setup)
+                      07766   LIST
+0023   1383           07767 DONE    bcf     STATUS, IRP     ; 1 Set FSR to bank 0/1
+0024   1303           07768         bcf     STATUS, RP1     ; 1 Show direct bank 0
+0025   1283           07769         bcf     STATUS, RP0     ; 1
+                      07770         CLRWDT?NOP              ; 1 Hit Watchdog timer
+                          M     ifndef NO_CLRWDT
+0026   0064               M         clrwdt
+                          M     else
+                          M         nop
+                          M     endif
+0027   0008           07771 DONERET return                  ; 2 Done
+                      07797   LIST
+0028                  07798 INIT
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      07836   LIST
+0028                  07837 main
+                      00060 
+                      00061 
+                      00062 ; C:\PBP\16F628.BAS             00012   BANK0   $0020, $007F
+                      00063 ; C:\PBP\16F628.BAS             00013   BANK1   $00A0, $00EF
+                      00064 ; C:\PBP\16F628.BAS             00014   BANK2   $0120, $014F
+                      00065 ; C:\PBP\16F628.BAS             00015   EEPROM  $2100, $217F
+                      00066 ; C:\PBP\16F628.BAS             00016   LIBRARY "PBPPIC14"
+                      00067 
+                      00068 ; C:\PBP\16F628.BAS             00018           include "PIC14EXT.BAS"
+                      00069 
+                      00070 ; C:\PBP\16F628.BAS             00025           include "PBPPIC14.RAM"
+                      00071 
+                      00072 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00014   CMCON=%111
+                      00073         MOVE?CB 007h, CMCON
+                          M         CHK?RP  CMCON
+                          M     if (((CMCON) & 180h) == 0)
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+  00000000                M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     if (((CMCON) & 180h) == 80h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M PREV_BANK = 1
+                          M     endif
+                          M 
+                          M     if (((CMCON) & 180h) == 100h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 2
+                          M     endif
+                          M 
+                          M     if (((CMCON) & 180h) == 180h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 3
+                          M     endif
+                          M     if (low (007h) == 0)
+                          M         clrf    CMCON
+                          M     else
+0028   3007               M         movlw   low (007h)
+0029   009F               M         movwf   CMCON
+                          M     endif
+                      00074 
+                      00075 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00015   VRCON=0
+                      00076         MOVE?CB 000h, VRCON
+                          M         CHK?RP  VRCON
+                          M     if (((VRCON) & 180h) == 0)
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     if (((VRCON) & 180h) == 80h)
+                          M       if (PREV_BANK == 0)
+002A   1683               M         bsf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP1
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       endif
+  00000001                M PREV_BANK = 1
+                          M     endif
+                          M 
+                          M     if (((VRCON) & 180h) == 100h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 2
+                          M     endif
+                          M 
+                          M     if (((VRCON) & 180h) == 180h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 3
+                          M     endif
+                          M     if (low (000h) == 0)
+002B   019F               M         clrf    VRCON
+                          M     else
+                          M         movlw   low (000h)
+                          M         movwf   VRCON
+                          M     endif
+                      00077 
+                      00078 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00017       TRISA = 0 
+                      00079         MOVE?CB 000h, TRISA
+                          M         CHK?RP  TRISA
+                          M     if (((TRISA) & 180h) == 0)
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M PREV_BANK = 0
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M     endif
+                          M 
+                          M     if (((TRISA) & 180h) == 80h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP1
+                          M       endif
+  00000001                M PREV_BANK = 1
+                          M     endif
+                          M 
+                          M     if (((TRISA) & 180h) == 100h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 2
+                          M     endif
+                          M 
+                          M     if (((TRISA) & 180h) == 180h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 3
+                          M     endif
+                          M     if (low (000h) == 0)
+002C   0185               M         clrf    TRISA
+                          M     else
+                          M         movlw   low (000h)
+                          M         movwf   TRISA
+                          M     endif
+                      00080 
+                      00081 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00019   BASLA:
+                      00082 
+                      00083         LABEL?L _BASLA  
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         RST?RP
+                          M     if ((PREV_BANK & 1) != 0)
+002D   1283               M         bcf     STATUS, RP0
+                          M     endif
+                          M     if ((PREV_BANK & 2) != 0)
+                          M         bcf     STATUS, RP1
+                          M     endif
+  00000000                M PREV_BANK = 0
+                          M     ifdef PM_USED
+                          M         LALL
+                          M _BASLA
+                          M         XALL
+                          M     else
+002E                      M _BASLA
+                          M     endif
+                      00084 
+                      00085 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00021       PORTA.0 = 1
+                      00086         MOVE?CT 001h, _PORTA??0
+                          M         CHK?RP  PORTA
+                          M     if (((PORTA) & 180h) == 0)
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+  00000000                M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     if (((PORTA) & 180h) == 80h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M PREV_BANK = 1
+                          M     endif
+                          M 
+                          M     if (((PORTA) & 180h) == 100h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 2
+                          M     endif
+                          M 
+                          M     if (((PORTA) & 180h) == 180h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 3
+                          M     endif
+                          M     if (((001h) & 1) == 1)
+002E   1405               M         bsf     PORTA,  000h
+                          M     else
+                          M         bcf     PORTA,  000h
+                          M     endif
+                      00087 
+                      00088 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00022       PAUSE 1000
+                      00089         PAUSE?C 003E8h
+                          M     if (((003E8h) >> 8) == 0)
+                          M         MOVE?CA 003E8h
+                          M         L?CALL  PAUSE
+                          M     else
+                          M         MOVE?CB (003E8h) >> 8, R1 + 1
+                          M         CHK?RP  R1 + 1
+                          M     if (((R1 + 1) & 180h) == 0)
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+  00000000                M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     if (((R1 + 1) & 180h) == 80h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M       endif
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M PREV_BANK = 1
+                          M     endif
+                          M 
+                          M     if (((R1 + 1) & 180h) == 100h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 2
+                          M     endif
+                          M 
+                          M     if (((R1 + 1) & 180h) == 180h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 3
+                          M     endif
+                          M     if (low ((003E8h) >> 8) == 0)
+                          M         clrf    R1 + 1
+                          M     else
+002F   3003               M         movlw   low ((003E8h) >> 8)
+0030   00A3               M         movwf   R1 + 1
+                          M     endif
+                          M         MOVE?CA low (003E8h)
+0031   30E8               M         movlw   low (low (003E8h))
+                          M         L?CALL  PAUSEL
+                          M         RST?RP
+                          M     if ((PREV_BANK & 1) != 0)
+                          M         bcf     STATUS, RP0
+                          M     endif
+                          M     if ((PREV_BANK & 2) != 0)
+                          M         bcf     STATUS, RP1
+                          M     endif
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  00000000                M PREV_BANK = 0
+                          M 
+                          M     ifdef USE_LINKER
+                          M       if (CODE_SIZE > 2)
+                          M         pagesel PAUSEL
+                          M       endif
+                          M     else
+                          M       if ((PAUSEL) < 1)
+                          M         if (CODE_SIZE > 2)
+                          M           if (((PAUSEL) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M         else
+                          M         bsf     PCLATH, 3
+                          M         endif
+                          M         endif
+                          M         if (CODE_SIZE > 4)
+                          M           if (((PAUSEL) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M           else
+                          M         bsf     PCLATH, 4
+                          M           endif
+                          M         endif
+                          M       else
+                          M         if ((PAUSEL) > $)
+                          M           if (CODE_SIZE > 2)
+                          M             if (((PAUSEL) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M             else
+                          M         bsf     PCLATH, 3
+                          M             endif
+                          M           endif
+                          M           if (CODE_SIZE > 4)
+                          M             if (((PAUSEL) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M             else
+                          M         bsf     PCLATH, 4
+                          M             endif
+                          M           endif
+                          M         else
+                          M           if (CODE_SIZE > 2)
+                          M             if (((PAUSEL) & 1800h) == 0)
+                          M         clrf    PCLATH
+                          M             else
+                          M               if (((PAUSEL) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M               else
+                          M         bsf     PCLATH, 3
+                          M               endif
+                          M               if (CODE_SIZE > 4)
+                          M                 if (((PAUSEL) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M                 else
+                          M         bsf     PCLATH, 4
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M                 endif   
+                          M               endif
+                          M             endif
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                          M 
+0032   2002               M         call    PAUSEL
+                          M     endif
+                      00090 
+                      00091 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00023       PORTA.0 = 0
+                      00092         MOVE?CT 000h, _PORTA??0
+                          M         CHK?RP  PORTA
+                          M     if (((PORTA) & 180h) == 0)
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+  00000000                M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     if (((PORTA) & 180h) == 80h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M PREV_BANK = 1
+                          M     endif
+                          M 
+                          M     if (((PORTA) & 180h) == 100h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M       endif
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M PREV_BANK = 2
+                          M     endif
+                          M 
+                          M     if (((PORTA) & 180h) == 180h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 3
+                          M     endif
+                          M     if (((000h) & 1) == 1)
+                          M         bsf     PORTA,  000h
+                          M     else
+0033   1005               M         bcf     PORTA,  000h
+                          M     endif
+                      00093 
+                      00094 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00024       PAUSE 1000
+                      00095         PAUSE?C 003E8h
+                          M     if (((003E8h) >> 8) == 0)
+                          M         MOVE?CA 003E8h
+                          M         L?CALL  PAUSE
+                          M     else
+                          M         MOVE?CB (003E8h) >> 8, R1 + 1
+                          M         CHK?RP  R1 + 1
+                          M     if (((R1 + 1) & 180h) == 0)
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+  00000000                M PREV_BANK = 0
+                          M     endif
+                          M 
+                          M     if (((R1 + 1) & 180h) == 80h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         bcf     STATUS, RP1
+                          M       endif
+                          M PREV_BANK = 1
+                          M     endif
+                          M 
+                          M     if (((R1 + 1) & 180h) == 100h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bcf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 3)
+                          M         bcf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 2
+                          M     endif
+                          M 
+                          M     if (((R1 + 1) & 180h) == 180h)
+                          M       if (PREV_BANK == 0)
+                          M         bsf     STATUS, RP0
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 1)
+                          M         bsf     STATUS, RP1
+                          M       endif
+                          M       if (PREV_BANK == 2)
+                          M         bsf     STATUS, RP0
+                          M       endif
+                          M PREV_BANK = 3
+                          M     endif
+                          M     if (low ((003E8h) >> 8) == 0)
+                          M         clrf    R1 + 1
+                          M     else
+0034   3003               M         movlw   low ((003E8h) >> 8)
+0035   00A3               M         movwf   R1 + 1
+                          M     endif
+                          M         MOVE?CA low (003E8h)
+0036   30E8               M         movlw   low (low (003E8h))
+                          M         L?CALL  PAUSEL
+                          M         RST?RP
+                          M     if ((PREV_BANK & 1) != 0)
+                          M         bcf     STATUS, RP0
+                          M     endif
+                          M     if ((PREV_BANK & 2) != 0)
+                          M         bcf     STATUS, RP1
+                          M     endif
+  00000000                M PREV_BANK = 0
+                          M 
+                          M     ifdef USE_LINKER
+                          M       if (CODE_SIZE > 2)
+                          M         pagesel PAUSEL
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       endif
+                          M     else
+                          M       if ((PAUSEL) < 1)
+                          M         if (CODE_SIZE > 2)
+                          M           if (((PAUSEL) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M         else
+                          M         bsf     PCLATH, 3
+                          M         endif
+                          M         endif
+                          M         if (CODE_SIZE > 4)
+                          M           if (((PAUSEL) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M           else
+                          M         bsf     PCLATH, 4
+                          M           endif
+                          M         endif
+                          M       else
+                          M         if ((PAUSEL) > $)
+                          M           if (CODE_SIZE > 2)
+                          M             if (((PAUSEL) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M             else
+                          M         bsf     PCLATH, 3
+                          M             endif
+                          M           endif
+                          M           if (CODE_SIZE > 4)
+                          M             if (((PAUSEL) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M             else
+                          M         bsf     PCLATH, 4
+                          M             endif
+                          M           endif
+                          M         else
+                          M           if (CODE_SIZE > 2)
+                          M             if (((PAUSEL) & 1800h) == 0)
+                          M         clrf    PCLATH
+                          M             else
+                          M               if (((PAUSEL) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M               else
+                          M         bsf     PCLATH, 3
+                          M               endif
+                          M               if (CODE_SIZE > 4)
+                          M                 if (((PAUSEL) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M                 else
+                          M         bsf     PCLATH, 4
+                          M                 endif   
+                          M               endif
+                          M             endif
+                          M           endif
+                          M         endif
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M       endif
+                          M     endif
+                          M 
+0037   2002               M         call    PAUSEL
+                          M     endif
+                      00096 
+                      00097 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00026       GOTO BASLA
+                      00098         GOTO?L  _BASLA
+                          M         L?GOTO  _BASLA
+                          M     ifdef USE_LINKER
+                          M         CLRWDT?
+                          M     else
+                          M       if ($ == (_BASLA))
+                          M         CLRWDT?
+                          M       endif
+                          M     endif
+                          M 
+                          M         RST?RP
+                          M     if ((PREV_BANK & 1) != 0)
+                          M         bcf     STATUS, RP0
+                          M     endif
+                          M     if ((PREV_BANK & 2) != 0)
+                          M         bcf     STATUS, RP1
+                          M     endif
+  00000000                M PREV_BANK = 0
+                          M 
+                          M     ifdef USE_LINKER
+                          M       if (CODE_SIZE > 2)
+                          M         pagesel _BASLA
+                          M       endif
+                          M     else
+                          M       if ((_BASLA) < 1)
+                          M         if (CODE_SIZE > 2)
+                          M           if (((_BASLA) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M           else
+                          M         bsf     PCLATH, 3
+                          M           endif
+                          M         endif
+                          M         if (CODE_SIZE > 4)
+                          M           if (((_BASLA) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M           else
+                          M         bsf     PCLATH, 4
+                          M           endif
+                          M         endif
+                          M       else
+                          M         if ((_BASLA) > $)
+                          M           if (CODE_SIZE > 2)
+                          M             if (((_BASLA) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M             else
+                          M         bsf     PCLATH, 3
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M             endif
+                          M           endif
+                          M           if (CODE_SIZE > 4)
+                          M             if (((_BASLA) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M             else
+                          M         bsf     PCLATH, 4
+                          M             endif
+                          M           endif
+                          M         else
+                          M           if (CODE_SIZE > 2)
+                          M             if (((_BASLA) & 1800h) == 0)
+                          M         clrf    PCLATH
+                          M             else
+                          M               if (((_BASLA) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M               else
+                          M         bsf     PCLATH, 3
+                          M               endif
+                          M               if (CODE_SIZE > 4)
+                          M                 if (((_BASLA) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M                 else
+                          M         bsf     PCLATH, 4
+                          M                 endif
+                          M               endif
+                          M             endif
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                          M 
+0038   282E               M         goto    _BASLA
+                      00099 
+                      00100 ; C:\USERS\SONA\DESKTOP\LED YAKMA\LEDYAKMA.PBP  00027       END
+                      00101         END?    
+  0000                    M     local loop
+0039   0063               M loop    sleep
+                          M         L?GOTO  loop
+                          M     ifdef USE_LINKER
+                          M         CLRWDT?
+                          M     else
+                          M       if ($ == (_30loop))
+                          M         CLRWDT?
+                          M       endif
+                          M     endif
+                          M 
+                          M         RST?RP
+                          M     if ((PREV_BANK & 1) != 0)
+                          M         bcf     STATUS, RP0
+                          M     endif
+                          M     if ((PREV_BANK & 2) != 0)
+                          M         bcf     STATUS, RP1
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M     endif
+  00000000                M PREV_BANK = 0
+                          M 
+                          M     ifdef USE_LINKER
+                          M       if (CODE_SIZE > 2)
+                          M         pagesel _30loop
+                          M       endif
+                          M     else
+                          M       if ((_30loop) < 1)
+                          M         if (CODE_SIZE > 2)
+                          M           if (((_30loop) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M           else
+                          M         bsf     PCLATH, 3
+                          M           endif
+                          M         endif
+                          M         if (CODE_SIZE > 4)
+                          M           if (((_30loop) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M           else
+                          M         bsf     PCLATH, 4
+                          M           endif
+                          M         endif
+                          M       else
+                          M         if ((_30loop) > $)
+                          M           if (CODE_SIZE > 2)
+                          M             if (((_30loop) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M             else
+                          M         bsf     PCLATH, 3
+                          M             endif
+                          M           endif
+                          M           if (CODE_SIZE > 4)
+                          M             if (((_30loop) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M             else
+                          M         bsf     PCLATH, 4
+                          M             endif
+                          M           endif
+                          M         else
+                          M           if (CODE_SIZE > 2)
+                          M             if (((_30loop) & 1800h) == 0)
+                          M         clrf    PCLATH
+                          M             else
+                          M               if (((_30loop) & 800h) == 0)
+                          M         bcf     PCLATH, 3
+                          M               else
+                          M         bsf     PCLATH, 3
+                          M               endif
+                          M               if (CODE_SIZE > 4)
+                          M                 if (((_30loop) & 1000h) == 0)
+                          M         bcf     PCLATH, 4
+                          M                 else
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                          M         bsf     PCLATH, 4
+                          M                 endif
+                          M               endif
+                          M             endif
+                          M           endif
+                          M         endif
+                          M       endif
+                          M     endif
+                          M 
+003A   2839               M         goto    _30loop
+                      00102 
+                      00103         END
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADC_BITS                          00000008
+ADC_CLOCK                         00000003
+ADC_SAMPLEUS                      00000032
+ADEN                              00000003
+BANK0_END                         0000007F
+BANK0_START                       00000020
+BANK1_END                         000000EF
+BANK1_START                       000000A0
+BANK2_END                         0000014F
+BANK2_START                       00000120
+BIT?FLIP                          
+BIT?FW                            
+BIT?GOTO                          
+BIT?R1                            
+BIT?R2                            
+BIT?W                             
+BRGH                              00000002
+BUTTON_PAUSE                      0000000A
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP1_BIT                          00000003
+CCP1_REG                          00000006
+CCPR1H                            00000016
+CCPR1L                            00000015
+CHK?RP                            
+CIS                               00000003
+CLRWDT?                           
+CLRWDT?NOP                        
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000001F
+CMIE                              00000006
+CMIF                              00000006
+CODE_SIZE                         00000002
+CREN                              00000004
+CSRC                              00000007
+DC                                00000001
+DEBUGIN_BIT                       00000000
+DEBUGIN_MODE                      00000001
+DEBUGIN_REG                       00000006
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DEBUG_BAUD                        00000960
+DEBUG_BIT                         00000000
+DEBUG_DELAY                       00000193
+DEBUG_MODE                        00000001
+DEBUG_REG                         00000006
+DONE                              00000023
+DONERET                           00000027
+DONE_USED                         00000001
+EEADR                             0000009B
+EECON1                            0000009C
+EECON2                            0000009D
+EEDATA                            0000009A
+EEIE                              00000007
+EEIF                              00000007
+EEPROM_END                        0000217F
+EEPROM_START                      00002100
+END?                              
+F                                 00000001
+FERR                              00000002
+FLAGS                             00000032
+FSR                               00000004
+GIE                               00000007
+GOP                               00000033
+GOTO?L                            
+HSER_BAUD                         00000960
+HSER_BITS                         00000008
+HSER_RCSTA                        00000090
+HSER_SPBRG                        00000019
+HSER_TXSTA                        00000020
+I2CFIRSTFLAG                      FLAGS, 2
+I2CREADFLAG                       FLAGS, 3
+I2CSTOPFLAG                       FLAGS, 5
+I2CSTOPSTRFLAG                    FLAGS, 6
+I2CWRITEFLAG                      FLAGS, 4
+INDF                              00000000
+INIT                              00000028
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+L?CALL                            
+L?GOTO                            
+LABEL?L                           
+LCDCDFLAG                         FLAGS, 0
+LCDINITFLAG                       FLAGS, 1
+LCD_BITS                          00000004
+LCD_COMMANDUS                     000007D0
+LCD_DATAUS                        00000032
+LCD_DBIT                          00000000
+LCD_DREG                          00000005
+LCD_EBIT                          00000003
+LCD_EREG                          00000006
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LCD_LINES                         00000002
+LCD_RSBIT                         00000004
+LCD_RSREG                         00000005
+LCD_RWBIT                         00000004
+LCD_RWREG                         00000005
+MOVE?AB                           
+MOVE?AT                           
+MOVE?AW                           
+MOVE?AWW                          
+MOVE?BA                           
+MOVE?BB                           
+MOVE?BT                           
+MOVE?BW                           
+MOVE?CA                           
+MOVE?CB                           
+MOVE?CT                           
+MOVE?CW                           
+MOVE?TA                           
+MOVE?TB                           
+MOVE?TT                           
+MOVE?TW                           
+MOVE?WA                           
+MOVE?WB                           
+MOVE?WT                           
+MOVE?WW                           
+MOVE?WWA                          
+NOT_BO                            00000000
+NOT_BOD                           00000000
+NOT_BOR                           00000000
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+OERR                              00000001
+OPTION_REG                        00000081
+OSC                               00000004
+OSCF                              00000003
+OSC_VALID                         00000001
+PAUSE                             00000001
+PAUSE?C                           
+PAUSEL                            00000002
+PAUSEUS                           0000000E
+PAUSEUSL                          0000000F
+PAUSEUS_USED                      00000001
+PAUSE_DELAY                       000003DF
+PAUSE_USED                        00000001
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PIE1                              0000008C
+PIR1                              0000000C
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PORTA                             00000005
+PORTB                             00000006
+PR2                               00000092
+PREV_BANK                         00000000
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+R0                                00000020
+R1                                00000022
+R2                                00000024
+R3                                00000026
+R4                                00000028
+R5                                0000002A
+R6                                0000002C
+R7                                0000002E
+R8                                00000030
+RAM_BANKS                         00000003
+RAM_END                           0000014F
+RAM_START                         00000020
+RBIE                              00000003
+RBIF                              00000000
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RESET_ORG                         00000000
+RM1                               00000034
+RM2                               00000035
+RP0                               00000005
+RP1                               00000006
+RR1                               00000036
+RR2                               00000037
+RST?RP                            
+RX9                               00000006
+RX9D                              00000000
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+STATUS                            00000003
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1OSCEN                           00000003
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 24
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0                              00000001
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISB                             00000086
+TRMT                              00000001
+TX9                               00000006
+TX9D                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+VR3                               00000003
+VRCON                             0000009F
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_BASLA                            0000002E
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_CP_50                            00002BFF
+_CP_75                            000017FF
+_CP_ALL                           000003FF
+_CP_OFF                           00003FFF
+_DATA_CP_OFF                      00003FFF
+_DATA_CP_ON                       00003EFF
+_ER_OSC_CLKOUT                    00003FFF
+_ER_OSC_NOCLKOUT                  00003FFE
+_EXTCLK_OSC                       00003FEF
+_HS_OSC                           00003FEE
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+MPASM  5.22                      LEDYAKMA.ASM   3-16-2021  17:39:57         PAGE 25
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_LP_OSC                           00003FEC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+_MCLRE_ON                         00003FFF
+_PORTA??0                         PORTA, 000h
+_PORTH                            00000005
+_PORTL                            00000006
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_TRISH                            00000085
+_TRISL                            00000086
+_USED                             00000001
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FED
+__16F628                          00000001
+main                              00000028
+pauseloop                         00000003
+pauseusdone                       00000022
+pauseush                          00000018
+pauseusloop                       00000015
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXX-----
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    59
+Program Memory Words Free:  1989
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     2 suppressed
+
+

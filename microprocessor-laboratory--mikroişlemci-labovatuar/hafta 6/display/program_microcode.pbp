@@ -1,0 +1,82 @@
+'****************************************************************
+'*  Name    : Enginkaratas.BAS                                  *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2021 [select VIEW...EDITOR OPTIONS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 4.04.2021                                         *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+DEFINE LCD_DREG    PORTB
+DEFINE LCD_DBIT    4
+DEFINE LCD_EREG PORTB
+DEFINE LCD_EBIT 3
+DEFINE LCD_RWREG    PORTB
+DEFINE LCD_RWBIT 2
+DEFINE LCD_RSREG PORTB
+DEFINE LCD_RSBIT 1
+DEFINE LCD_BITS 4
+DEFINE LCD_LINES 2
+
+
+
+TRISA = 0
+TRISB = 0
+SAYI VAR BYTE
+
+LOW PORTB.2
+
+PAUSE 200
+LCDOUT $FE,1
+SAYI = 0
+PAUSE 200
+
+    
+BASLA:
+	LCDOUT $FE,2,"   SAYI=  ", #SAYI
+	LCDOUT $FE,$C0,"BINARY = ", BIN SAYI
+	PAUSE 500
+	IF PORTA.0 = 0 then
+	SAYI=SAYI+1
+	ENDIF
+	IF SAYI<100 THEN BASLA
+
+       SAYI=0
+ARA:   LCDOUT $FE,2,"SAYI  = ",#SAYI
+	   LCDOUT $FE,$C0,"HEX  = ",HEX2 SAYI
+	   PAUSE 500
+	   SAYI=SAYI+10
+	   IF SAYI<250 THEN ARA  
+	  
+  END
+	
+	
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

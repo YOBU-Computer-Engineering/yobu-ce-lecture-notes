@@ -1,0 +1,44 @@
+'****************************************************************
+'*  Name    : 5.hafta .BAS                                      *
+'*  Author  : samet ulutürk                                     *
+'*                                                              *
+'****************************************************************
+
+DEFINE LCD_DREG PORTA 'LCD data bacaklarý hangi porta baðlý?
+DEFINE LCD_DBIT 0 'LCD data bacaklarý hangi bitten baþlýyor?
+DEFINE LCD_RSREG PORTA 'LCD RS Bacaðý Hangi Porta baðlý ?
+DEFINE LCD_RSBIT 4 'LCD RS bacaðý Hangi Bite baðlý ?
+DEFINE LCD_EREG PORTB 'LCD Enable Bacaðý Hangi Porta baðlý?
+DEFINE LCD_EBIT 0 'LCD Enable Bacaðý Hangi bite baðlý ?
+DEFINE LCD_BITS 4 'LCD 4 bit mi yoksa 8 bit olarak baðlý?
+DEFINE LCD_LINES 2 'LCD Kaç sýra yazabiliyor
+TRISA=0
+TRISB=%11000000
+SAYI  VAR WORD  'word olarak tanýmladým.
+SAYI=0
+
+PAUSE 200 'lcd hazýr hale gelmesi için.
+LCDOUT $FE,1 'ekraný sildim
+
+LCDOUT $FE,$80, "SAMET ULUTURK"       '1. satýr
+LCDOUT $FE,$C0, "BOZOK UNV."           '2.satýr
+PAUSE 1000
+LCDOUT $FE,1 'ekraný sildim
+PAUSE 300
+
+ANA:
+    LCDOUT $FE,$80,"SAYI = ",DEC3 SAYI
+    LCDOUT $FE,$C0, "LCD UYGULAMASI"
+    PAUSE 190
+    
+    IF PORTB.7=0 THEN
+    SAYI=SAYI+1
+    ENDIF
+    
+    IF PORTB.6=0 THEN
+    SAYI=SAYI-1
+    ENDIF
+   
+GOTO ANA
+END
+

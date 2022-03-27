@@ -1,0 +1,30 @@
+'****************************************************************
+'*  Name    : LedYak.BAS                                      *
+'*  Author  : [select VIEW...EDITOR OPTIONS]                    *
+'*  Notice  : Copyright (c) 2021 [Engin KARATAS] *
+'*          : All Rights Reserved                               *
+'*  Date    : 16.03.2021                                        *
+'*  Version : 1.0                                               *
+'*  Notes   :                                                   *
+'*          :                                                   *
+'****************************************************************
+
+
+
+CMCON=%111
+VRCON=0
+ 
+    TRISA = 0 
+
+BASLA:
+
+    PORTA.0 = 1
+    PAUSE 1000
+    PORTA.0 = 0
+    PAUSE 1000
+    
+    GOTO BASLA
+    END
+
+
+
