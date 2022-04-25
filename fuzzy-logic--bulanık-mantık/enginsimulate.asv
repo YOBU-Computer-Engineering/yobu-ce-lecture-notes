@@ -1,0 +1,44 @@
+[System]
+Name='engin'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='ArabaModel'
+Range=[2000 2020]
+NumMFs=2
+MF1='Eski':'trimf',[2000 2000 2010]
+MF2='yeni':'trimf',[2006 2010 2020]
+
+[Input2]
+Name='ArabanınFiyatı'
+Range=[0 3000]
+NumMFs=3
+MF1='yeni':'trimf',[0 0 80]
+MF2='kullanılmış':'trimf',[80 80 300]
+MF3='oldukça kullanılmış':'trimf',[300 300 3000]
+
+[Output1]
+Name='output1'
+Range=[0 1000]
+NumMFs=4
+MF1='Düşük':'trimf',[0 0 200]
+MF2='Orta':'trimf',[80 250 300]
+MF3='orta_üstü':'trimf',[250 400 500]
+MF4='yüksek':'trimf',[320 800 1000]
+
+[Rules]
+2 1, 4 (1) : 1
+2 2, 3 (1) : 1
+2 3, 2 (1) : 1
+1 3, 3 (1) : 1
+1 2, 2 (1) : 1
+1 1, 1 (1) : 1
