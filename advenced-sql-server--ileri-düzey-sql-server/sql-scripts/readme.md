@@ -1,0 +1,1 @@
+all notes from advenced sql lecture
