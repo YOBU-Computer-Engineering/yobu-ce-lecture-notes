@@ -80,9 +80,6 @@ Robotikte pwm(pulse widht modulation):
 200 ms 5v veriyor. 50ms 0 veriyor . Bunun ortalama değeri 4 tür. 4 gibi bir değer veriyor bize. Veya 150 5v, 100 0 v veriyor.
 
 
-
-Not: Mustafa`ya not yok
-Neden: Derste boş boş oturuyor
 Geçen haftaki kod parçalarından sınavda sorulacak. Sınavdaki ardunyo sorusu gibi sorular olacak
 
 Haftaya sadece sınav olacak ders olmayacak.
