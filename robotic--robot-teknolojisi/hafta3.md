@@ -1,10 +1,10 @@
 0-49 sayfalar
 4-8. hafta sınav:
-1.Robot tipleri 
+1.Robot tipleri
 2.Mikroişlemci, mikrokontrolcü
 
 -Assembly devre elemanlarıyla diğer devre elemanlarının farkı bilinmeli.
-Assembly d e: surface mounted device = devreye koyulan mikro kondansatör(assembly) ler  sayesinde mikroişlemciler assembly daha az enerji tüketebilir.
+Assembly d e: surface mounted device = devreye koyulan mikro kondansatör(assembly) ler sayesinde mikroişlemciler assembly daha az enerji tüketebilir.
 
 -İşlemci içerisinde küçü bir ram bellek vardır.
 
@@ -21,17 +21,13 @@ MİKROİŞLEMCİ
 6.Ondalık sayı hesabı yapabilir
 
 Hexadecimal kod:
-1 2 3 4 5 6 7 8 9 A B C D E F 
+1 2 3 4 5 6 7 8 9 A B C D E F
 Bu sistem çok kullanılr.
 Mikdrodenetleyiciye hexadecimal olarak gönderilir kodlar.
+
 ---
 
 Ripplelı, noiseli)( bilgi gönderirsen mikrodenetleyiciye, çıktılar yanlış bilgi verir. Bu yüzden besleme gerilimlerinin (prize doğru voltajı takma) düzgün olması hayati bir konudur.
-
-
-
-
-
 
 -Assembly: küçük mdüller. Şarzı az yiyo.
 
@@ -54,19 +50,21 @@ Veriyolu 16 bittir yani
 
 DUE:
 Daha fazla hız
-84 mhz 
+84 mhz
+
 ---
 
-Ardunyoları birbirine wifi ile bağlanılır convension olarak.
---
+## Ardunyoları birbirine wifi ile bağlanılır convension olarak.
+
 Tüm kapılar not kapısından üretilir. Ve içerisi d flipfloplardan oluşur.
 Anot:+
 Katot:-
-----
+
+---
+
 Potasyometrenin ayakları 0-5 volt arası giriş olur bunu analog girişle okuyabiliriz
 analogRead(a0) a0 analog girişinin değerini okur kod kısmında.
 
 Mapping: bir seviyey, başka bir seviyeye eşitleme mantığıdır.
-
 
 Ders molası sonrası yazılımın temelleri anlatıldı
