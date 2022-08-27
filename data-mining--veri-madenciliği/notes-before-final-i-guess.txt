@@ -1,0 +1,159 @@
+Fully connected layer = 
+Filterelemeden sonra pooling yapıyor, pooling filterleri düşürüyor.
+Flatten: düzleştirme= matrisi düzleştirip tek satıra getiriyor
+Dance layer ile 
+Softmax cnn de çok kullanılıyor.
+Biz siqmuid fonk. Kullanacaz aktivasyon fonku olarak.
+Yapay zeka derin öğrenme anlaşılması zor konular.
+
+Text classification
+
+
+CNN:
+Vizeden ve finalden notlar alırız bu lineerdir.
+Non-lineer: 0 1 olarak gruplara ayırmak.
+Giriş katmanı görüntüyü alır. Her katman 3d giriş  alabilir ve verebilir.
+CNN yapısı
+Resmi matris aldıktan sonra -> conv diye bir layer sonra ->pool -> tekrar conv ->pool ->flu connected layer(düzleştirmek işlemi) 
+Her aşamada filtreleme yapılır ve tekrar tekrar filtreleme yapıldıktan sonra FC de düzleştirme yapılır.
+Fully connected katmanı girişi tek katmanlı alarak onu bir sınıfa atar(etiketler gibi)
+
+Sınavda 
+kod olacak
+Test olmayacak
+Kod parçacıklarının çıktısı, ne işe yaradığı sorulabilir.
+
+Amaç bu işle ilgili bir şeyler öğrenmiş olmanızı sağlamak. Bilenle bilmeyeni ayırtedip seviyenizi anlamak için yazılı bir sınav yapacazğız
+
+İlgilenip ilgilenmediğini anlamam gerekiyor o kodla
+
+SINAV
+
+
+x=Dropout(0.45)(X) #EZBERLİYORDU. dROPOUT EZBERİ ENGELLER. OVERFİTTİNG OLDUĞU İÇİN. eZBERLEMEyi engellemeye çalışır. dropout 0 ile 1 arasında olur. %76 ya %86 sonuç üretirse dropout kullanılır.  
+#eğitim verisinin yüksek, test verisinin istenilenden düşük çıkması normaldir.
+#eğer test verisi eğitim verisinden yüksek çıkıyorsa ezberleme vardır diyecektik
+
+Ekstra bir şey yok 
+Numpy pandas.py:
+Fonksyonlar metodlar
+Soru: 0 ile 20 arasındaki sayıları liste oluşturabilen fonk nedir vb.
+Type fonk ne işe yarar
+Numpy nedir ne işe yarar
+Zeros ne yapıyor. Soracak
+Ndim ne işe yarar soracak 
+Ones fonksyonu 
+Linspace 
+Np.random.rand //rand 
+Np.random.permutation
+seed
+Max min fonks
+Argmax(listede maxin indisi)
+
+Series = tek boyut
+
+Dataframe oluşturma
+Mutlaka aklınızda 
+Olsun
+
+
+W2wac:
+Kodunu sormam
+Ne olduğunu ne işe yaradığını bilin.
+
+
+Drop fonksyonunda İnplace = True diyecez
+Unutmayın 
+
+Onislem-future-extraction:
+
+Her bir kelime tek tek ayrı sütun başlığı olacak şekilde, her bir satırdaki durumu
+Nominal veriler= sürekli değeri olmayan değerler.
+
+Numpy: sayısal işlemler için kullanılır. Matris ve listeler kullanılırken çok kullanılır. Listaler ile işlemler yapılır. 
+Pandas: Makine öğrenmesine veri göndermek için çok kullanılır. Numpy ile iletişim halinde olur.
+
+
+Lineer regresyon: 5 stünu olan veriinin arasında doğrusal bir ilişki var mı
+İlişki=korelasyon
+
+
+
+
+
+
+
+
+
+Lstm : derin öğrenme
+Gru : lstm ile benzer derin öğrenme 
+Cnn : derin öğrenme
+
+Bitirme:
+Dataframe ekle, cross validation yap(çaprazlama), vord2wec özellik çıkarımı yap(yapmasanda olur), lstm tokenizer ile kelimeleri al.
+
+2 tane çeşiti vardır bir şeyin:
+Saykıt learn : her çalıştığında yeni bir %20, %80 alıyor. 
+Çapraz doğrulamada: 5 dilime paçalıyor.
+
+Özellik çıarımı çok önemli.
+Her bir satırın özeliğinin arasındakifarkı belitebilirsek bu farklılık iyi sonuçar doğurabilir.
+
+Ön işleme yöntemini iyi seçmek ve lemantize yöntemiyle kelimenin kökü bilinebilir.
+
+Tokenizer ne yapıyor?
+
+Lstm ister -> tüm sütunlar eşit olmalı
+
+
+Yapaay sinir ağları nedir?  Bir örnek yapacağız.
+İnsan neronlarından çıkıp yapılmaya çalışılmıştır.
+1-Optimizasyon
+2-kümeleme
+yapar
+En son çıkan algoritmadır.
+
+Yapay sinir ağları beyindeki nöronların davranışlarını taklit etmeye çalışır.
+YSA`da aktivasyon fonksyonu vardır.
+Arada hidden layer katmanları oluşturulur. Buralarda en iyileme yapılmaya çalışır.
+LSTM=long shot term memory(uzun kısa süreli bellek algoritması)
+Ltsm, rnn deki algoritmadan daha iyi çalışması için tasarlanmıştır. Kısa süreliğine hafızasında tutar. 
+
+	1. Ltsm yi nedir ne değildir çalışın öğrenin
+
+Çeşitli katmanlar var. Bu katmanlara kelimelerden vektörler verilir. Resetleme katmanına bunları veriyoruz. Resetleme katmanı ilgili girdiye bir sonuç üretir. 16 veriyi alıp 8 tane çıkış üretyor.
+
+Embedding layerdeki bilgiler alınır ve LSTM katmanına verilir ve sonuç üretir. 16->8->4->2->1 //bir satır için tüm bu adımları uygular. Bu çalışma genellikle duygu analizinde kullanılır. 
+
+LSTM = Yapay tekrarlayan sinir ağıdır.
+LTSM = GRU layer ve CNN algoları kullanılabilir.
+GRU: elde edilen model lstm modelinde daha basitdir.
+
+Ders dosyanın notları
+İmport adam //optimize etmeye yarıyor. Vektörlerimizi 
+Her iter`de daha iyi hale getiriyor
+Texto 
+Text context
+Fit context
+Padding işlemi.
+Bunlar ne yapıyor? Finalde soracaam
+Finalde kod yazılacak
+
+Denetim algoritma 
+Basit sınav 
+Tanımsal ifadeler
+Jhonson kütüphanesini kullanacağız
+W2w: kelimelerin birbirileriyle arasındaki ilişkisini bulur. Embedding words metodunu kulanır. Kelime gömme metodurur. Özellik çıkarımı yapar. Kelimenin sayısal değerlerine çeviriyor.
+---
+Süreksiz değişkenler nominal değerler
+ 
+0 ile 100 arasındaki değişkenler sürekli değişkendir.
+Lineer regresyon : doğrusal ilişki
+
+
+
+
+
+
+
+
