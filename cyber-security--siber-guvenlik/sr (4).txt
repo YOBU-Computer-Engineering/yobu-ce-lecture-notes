@@ -1,0 +1,35 @@
+smurf saldırısı
+hping3 --icmp --a 10.0.2.4 10.0.2.15(linux-enternet)
+
+hping3 --icmp -c l --spoof 10.0.2.4 10.0.2.255(255 brodcast olduğundan) bir tane 
+talep gönderir.(brodcastnedir ? ağdaki tüm bilgisayarların ipleri snrmss)
+(spoof yerine floodda yazılabilir)
+*------
+tunnelling saldırısı
+
+oyun bağlantıları için kullanılıyor.acaba kötü bir amaç için kullanılabilir mi
+amazon web services(aws)==msazure(haftaya)
+
+saldrıya uğrayabilecek değerler:
+kurum ismi ,güvenliği ve markaları
+Kurma ait özel mahrem bilgiler vb...
+---
+ddos saldırı çok kolay yapılabiliyor
+----
+kitap vericek oku diyecek sınavdan bu bölümleri soracak
+---
+spoofing sniffing ddos man in the middle
+siber savaş hasan çiftçi sınav...
+ddos:birden fazla kişiyi zombi yapar brodcast atıyor diğer makinelere bir makine.sonra bir tanesine saldırıyorlar.
+
+saervis dışı bırakma saldırı çeşitleri ICMP flood(öğrende gel)
+-------------------
+ddos|syn flood güvenlik önlemleri verildi.
+bundan sonraki slayt içinde geçerli
+rate limiting ile bunlara güvenlik sağlar
+---
+dns aplification bunu kısıtlıyabilirsiniz
+
+
+
+

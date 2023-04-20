@@ -1,0 +1,30 @@
+yeni senaryo:
+kurban ms edge
+apgtgetinstall mitmf
+
+
+FRAMEFOWRkun içine girdik
+
+cd mitmf
+
+
+python mitmf --
+
+arp -a diyip mac adreslerşnden arklı iplerde aynı ipvarsa hackleniyon demekk
+
+python mitmf.py yi çalıştırdık
+python mitmf.py --arp --spoof gateway    (ip)   .................... -eth0
+
+usarname we passwordu alabildik/http kullandığı için gördük
+----------------------------------------------------------------------
+cd MITMf
+
+python mitmf.py
+toolları gördük
+-----
+epey bir ödev verecek.
+-**--*-*-***--*--*--**-*-*----***-*
+jskeloger yazarak keyloger ? bunları yapmamızı söylemiş yapmadık diye kızdı.
+--
+bu haftalık bitti
+edmodoyu takip et

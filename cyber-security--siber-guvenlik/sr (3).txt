@@ -1,0 +1,48 @@
+siber güvenlik :
+
+Gidiş-geliş gecikmesiipnin önemlş bşrpar.çasıdır attığımız pingler oluyor webe ping atıyoruz,bilgisayardaki elemanlara da ping atıp 
+cevabını alabiliyoruz.
+
+aynı subnet  içinde olmadığımız için ping heryere atamıyoruz.
+ping atalım
+Pinging google.com [172.217.169.142] with 32 bytes of data:
+Reply from 172.217.169.142(googlenin kendi sunucusunun ip adresi): bytes=32 (32 bitlik data gönderdi ve bunu wire shark içinde içeriği görebiliriz)time=61ms(gidiş geliş süresi 61 ms de gidiğ gelmişGidiş-geliş gecikmesi(RTT)) TTL=50
+Reply from 172.217.169.142: bytes=32 time=53ms TTL=50
+Reply from 172.217.169.142: bytes=32 time=62ms TTL=50
+
+ICMP nedir ?4. katman tcp/udp gibi değildir ama paketleri kontroll eder tcp gibi...
+İP VE İCMP =PCP de checksum varmı yok 
+------
+icmp sürekli paket gönderiyor
+------
+osenin 1. katmanında bilgiler byte olarak gider 2.katmanda frame diyoruz bunlara 3.katmanda 
+------
+ethernet 2 frame büyüklüğü 14 bytedır(2. katmandayız bir sourcenin mac adresi barındırılıyor(6 bytedir mac 2 tana olduğu için 12 byte))
+--
+wiresharkta attığımız pingi göremek için icmp yaz
+(request =talep,reply=cevap)
+----
+gönderilen paketin gitmeme veya gelmeme şansı var bu yönüyle udpye benzer.brodcast olayı gibi diyor.
+-----
+ICMP probig ?nedir hedef varmı diye kontrol edebiliriz
+networkta hangi makinalar var öğrnemek istiyorum nasıl?
+arp ile ve komutu ile 
+-----
+farklı subnetlere ping atamıyoruz 
+------
+nmap ile ağdaki ip adreslerini tarıyabiliyoruz
+nmap -sP 10.11.8.0/24
+-----
+Smurf attack ddosa benzer çok bilgisayara ping attırmamızı sağlıyor o bilgisayar daha iflah olmaz diyoruz
+---
+lets smurf
+
+
+
+
+
+
+
+
+
+

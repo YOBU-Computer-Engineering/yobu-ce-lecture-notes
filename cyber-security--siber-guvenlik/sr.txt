@@ -1,0 +1,17 @@
+bit 0lar ve 1 ler
+byte 8 tane bit veya 2 nibbles ,2hexadecimal denir
+70 12 
+
+layer 2 cihazlar :switch,hub,bridge
+switch:ip adresleri ve maclar tutuşur
+
+domain:iperinisimleriyle ientaegre olup eşleşmesini sağlar
+dns:dns sorgula ip sunucusua gider http bakaraa
+dns udp ile sorguluyor
+ 
+adress resulatio protocol (arp)(2.katmann ,ip ve macleri eşleltiriyor)
+
+bir sistemde 2 sunucunun ip si aynıdır.
+
+arp zehirlenmesi(spoofing):
+

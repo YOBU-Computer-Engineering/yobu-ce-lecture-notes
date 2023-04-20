@@ -1,0 +1,22 @@
+ipv4ün ne kadar kolay kırılabildğini
+ortadki adam saldırısını 
+kablosusz aplara nasıl güvenlik sağlarım 
+
+ipv4:4milyar ipv4 var(kendi içerisinde dönüşümlerle iplerazalır) 32 bit 4 blog. (8 bitlik gruplar )
+headeri headerchecksumu rahatlıkla görebiliyoruz
+network adress transation=iç ip, çıkınca ip adresinideğiştirmesi lazım.nasıl dönüşüyor?
+ağ yapılandırııyorsan ip adreeslerini düzenlemezsen çıkış yapamazsın.
+---
+network adress translation
+static nat 
+dinamik nat değişen ip adresleri
+
+ipv6:128 bit
+----
+youtube tube =tüp, televizyon
+---
+mesajları okayım --->1997 ,bir çok şey ---->2020
+---
+quality of services(QoS)kaliteyi garanti altına almak için cisco gibi şirketler servisler geliştirdi .
+----
+arp a dedipğinde yakalıyorsun adamı ..

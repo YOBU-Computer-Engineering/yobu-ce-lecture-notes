@@ -1,0 +1,9 @@
+nasıl arp önlenir  		
+
+statik arp kaydı ile zehirlettirilemez.
+çok büyük ağ üzerinde gerçekleştirilemez
+
+arp zehirlenmesi algılmama yazılımı
+
+
+

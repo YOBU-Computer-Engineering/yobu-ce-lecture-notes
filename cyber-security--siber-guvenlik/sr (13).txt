@@ -1,0 +1,4 @@
+eset internet security:ağa bağlandığında uyarı verir.
+---
+airties internet arayüzünden 
+firewall cihazı gösterecek.

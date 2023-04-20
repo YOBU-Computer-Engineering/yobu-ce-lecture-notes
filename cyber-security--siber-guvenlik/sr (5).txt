@@ -1,0 +1,57 @@
+rfc nedir ??????
+time to leave = ttl 
+128 yazarsa 128 tane sinden geçebileeğini söyler .
+ip headeri öğren öğren
+
+header chechsum neden sürekli konrol eder
+paketi sayar checksumla uyuşuyorsa yollar uyuşmuyorsa gönderimi iptal eder
+paketi drop eder çünkü paket bozulmuştur...
+
+"en önemli mühendislik icadı mühedisliktir -mehmet bakır "
+---
+maximum transmisson Unit (MTU)
+büyükse transmisson zamanda geçikmeye uğrar 
+küçükse mto sürekli paketlerle uğraşacağından işlemciye yük biner.
+----
+Fragmentation(parçalamak)(sınav)
+ip header :20 byte
+ethernet frame :14
+ICMP :8
+data 2999 byte olsun(8 byti ekstra ICMP(timestamp)).
+----
+wirless cihazı alırken kali linuxuyumku wirelessleri seçin
+tplink aterosçipli modeli
+bunlarda 2 .tane mod var :
+1.monitor mode(herhangibi ağa bağlanmıyoruz.etrafta uçuşan paketleri snniff eder)(destekleyen bir şey al)
+2.managed mode
+kalilinuxta USBye wirlessi tanıt.ağdaki net ağını köprü bağdaştırıcı olacak.adı atheros ar927yi sec
+tamam dedi
+kaliyi başlat
+iwconfig ile wirelessbağlantı bilgilerini alırsın
+---
+ifconfig wlan0(kablosuz adaptörü kullanarak kendisinin oluşturduğu ağ) down
+---
+mac adersi değiştirmek için gerekli frameworkumuz dedi 
+cmdye macchanger --help yaz
+ifconfig wlan0 down
+macchanger -A (wermek istediğiimiz wlanı soruyor ) wlan0//macimizi otomatik değiştirir
+ipconfig wlan0 up
+
+ifconfig wlan down
+ifconfig wlan up
+----
+airmon(air monitor)
+wlan0ımız  aktif
+airmong-ng start wlan0(monitor moda alıyoruk)
+monitor moduna çektiğimiz için internete bağlanamıyoruz
+wiresharkta airmona tıkladık
+--
+w ile bir ağa saldırmak istiyorsak böyle veri mi ne toplayacaz ?
+amaç burda savunmayı öğrenmek saldırmayı değil
+---
+wireshark kullanmak istemiyorsak bir diğer framework var
+airodump-ng (wlan0 (interfce yazılır)) (sniffing için kullanılıylor)
+airodump-ng wlan0mon
+pwr -1 =en yakın
+pwr -82 = en uzak
+--

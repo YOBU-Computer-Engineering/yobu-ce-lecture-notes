@@ -1,0 +1,9 @@
+BEDAVA PEYNİR FARE KAPANINDARIR:
+Bir kişi yayın yapar bilgileri kaptırırsın
+
+BSSID =mac adress
+ESSID=ağdaki adı(SSIDLERİNİZİ gizleyin)1.güvenlik kuralı -e
+--
+sadece bir tanesine odaklanmak istioyrum nasıl ?
+airodum-ng --(burada ch no(channel 8)) --bssid 23:24:54(mac adresi) --write(dosyaya yaz) test1mon
+airdump-ng wlan0mon channel (8 mi ?(kaçırııldı))
